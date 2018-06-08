@@ -7,6 +7,7 @@ import search from '@/page/search'
 import searchDetail from '@/page/searchDetail'
 import collection from '@/page/collection'
 import collectDetail from '@/page/collectDetail'
+import candles from '@/page/candles'
 
 Vue.use(Router)
 
@@ -21,6 +22,11 @@ export default new Router({
       path: '/detail',
       name: 'detail',
       component: detail
+    },
+    {
+      path: '/hangqing',
+      name: 'hangqing',
+      component: candles
     },
     {
       path: '/collectDetail',

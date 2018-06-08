@@ -62,6 +62,11 @@ export default {
   },
   methods: {
     clickChannel(channel,index) {
+      console.log("clickChannel", channel, index)
+      if ( channel === '市场行情'){
+        this.$router.push('/hangqing')
+        return
+      }
       this.$store.state.channelData = ''
       scrollTo(0,0)
       this.$store.state.load = true
@@ -71,6 +76,7 @@ export default {
       this.$store.dispatch('acGetData', this.$store.state.channels[this.$store.state.channelIndex])
     },
     toDetail(item, index) {
+      console.log("toDetail")
       this.$store.commit('muNewDataIndex', index)
       this.$router.push('/detail')
       if(JSON.stringify(this.$store.state.collection).indexOf(JSON.stringify(this.$store.state.channelData[this.$store.state.newDataIndex])) != -1) {
