@@ -14,6 +14,8 @@ var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
 var http = require('http')
 
+var conn = mysql.createConnection(models.mysql)
+conn.connect();
 
 
 
@@ -63,8 +65,7 @@ apiRoutes.get('/channel/:item', function(req, res) {
       //     resolve(findResult)
       //   })
       // })
-      let conn = mysql.createConnection(models.mysql)
-      conn.connect();
+
       let result = {status: '0', msg: 'ok', result:{"channel":"区块链新闻", "num": "30", "list":[]}}
       conn.query("SELECT * FROM test.bit_news order by url desc limit 30", function (error, results) {
         if (error) throw error;
@@ -77,20 +78,14 @@ apiRoutes.get('/channel/:item', function(req, res) {
           item['category'] = '';
           item['pic'] ='';
           item['content'] = results[i]['content'];
-          console.log(item);
           result.result.list.push(item)
         }
-        console.log(result);
         resolve(result);
       });
-
-      conn.end();
-
     })
   }
   findChannel(item)
     .then(findResult => {
-      console.log("I am here")
       // res.json(JSON.parse(findResult))
       res.json(findResult)
     })
