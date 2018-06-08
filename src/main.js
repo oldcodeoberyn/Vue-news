@@ -76,9 +76,9 @@ const store = new Vuex.Store({
           resolve()
       })
     },
-    acGetData({ commit,state }, channel) {
+    acGetData({ commit,state }, item) {
       return new Promise((resolve, reject) => {
-        axios.get('/api/channel/' + channel)
+        axios.get('/api/channel/' + item)
           .then(res => {
             commit('muGetData', res.data.result.list)
             store.state.load = false
