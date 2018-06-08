@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-var  sql = "SELECT * FROM test.bit_news order by url desc limit 10";
+var  sql = "SELECT * FROM test.bit_news order by time desc limit 30";
 //查
 connection.query(sql,function (err, result) {
   if(err){
