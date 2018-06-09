@@ -11,7 +11,7 @@
         <div class="title">{{channelNewData &&　channelNewData.title}}</div>
         <div class="message">
           <span>{{channelNewData && channelNewData.time || '2017-06-07 12:00'}}</span>
-          <span>{{channelNewData && channelNewData.src || '爱新闻'}}</span>
+          <span>{{channelNewData && channelNewData.src || '数字宝'}}</span>
         </div>
         <img :src="channelNewData && channelNewData.pic || require('../assets/tongyong.jpg')">
         <div class="newsContent" v-html="channelNewData && channelNewData.content"></div>

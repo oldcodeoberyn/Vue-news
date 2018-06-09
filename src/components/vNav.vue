@@ -25,7 +25,7 @@
               <div class="newsTitle">{{item.title}}</div>
               <div class="newsMessage">
                 <span>{{item.time || '2017-06-07 12:00'}}</span>
-                <span>{{item.src || '爱新闻'}}</span>
+                <span>{{item.src || '数字宝'}}</span>
               </div>
             </div>
           </div>
