@@ -2,8 +2,8 @@
 
 
 <template>
-  <div class="candles" style="height: 700px; width: 700px">
-    <div class="main" style="height: 700px; width: 700px"></div>
+  <div class="candles" style="height: 360px; width: 300px">
+    <div class="main" style="height: 360px; width: 100%"></div>
   </div>
 
 </template>

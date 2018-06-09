@@ -1,6 +1,4 @@
 require('./check-versions')()
-var models = require('./db')
-var mysql = require('mysql')
 var config = require('../config')
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
@@ -13,9 +11,11 @@ var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
 var http = require('http')
+var datawrapper = require('./news-data')
 
-var conn = mysql.createConnection(models.mysql)
-conn.connect();
+datawrapper.init();
+datawrapper.intervalUpdate();
+
 
 
 
@@ -66,22 +66,9 @@ apiRoutes.get('/channel/:item', function(req, res) {
       //   })
       // })
 
-      let result = {status: '0', msg: 'ok', result:{"channel":"区块链新闻", "num": "30", "list":[]}}
-      conn.query("SELECT * FROM test.bit_news order by time desc limit 30", function (error, results) {
-        if (error) throw error;
-        for (var i = 0; i < results.length; i++)
-        {
-          let item = {}
-          item['title'] = results[i]['title'];
-          item['time'] = results[i]['time'];
-          item['src'] = '';
-          item['category'] = '';
-          item['pic'] ='';
-          item['content'] = results[i]['content'];
-          result.result.list.push(item)
-        }
-        resolve(result);
-      });
+
+      resolve(datawrapper.newsdata);
+
     })
   }
   findChannel(item)
