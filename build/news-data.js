@@ -14,11 +14,11 @@ module.exports = {
       if (error) throw error;
       for (var i = 0; i < results.length; i++) {
         let item = {}
-        item['title'] = results[i]['title'];
+        item['title'] = results[i]['title'].split('#')[0];
         item['time'] = results[i]['time'];
         item['src'] = '';
         item['category'] = '';
-        item['pic'] = '';
+        item['pic'] = results[i]['title'].split('#').length > 0 ? results[i]['title'].split('#')[1] : '';
         item['content'] = results[i]['content'];
         result.result.list.push(item)
       }
@@ -42,6 +42,7 @@ module.exports = {
       try {
         this.newsdata = this.getNewsData();
       } catch (e) {
+        console.log(e)
         console.log("intervalUpdate failure")
       }
     }, 1000 * 60 * 15)
